@@ -1,7 +1,11 @@
 import "./App.css";
 import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import { TodoType } from "./types/Todo.types";
-import Todo from "./components/Todo";
+import NotFound from "./components/NotFound";
+import TodoPage from "./components/TodoPage";
+import Layout from "./components/Layout";
+import Home from "./components/Home";
 
 function App() {
   const [todos, setTodos] = useState<TodoType[]>([]);
@@ -29,18 +33,18 @@ function App() {
   }, []);
 
   return (
-    <main className="App">
-      <h1>HomePage</h1>
-      {isLoading && <p>Loading posts...</p>}
-      {!isLoading && fetchError && <p style={{ color: "red" }}>{fetchError}</p>}
-      {!isLoading &&
-        !fetchError &&
-        (todos.length ? (
-          todos.map((todo: TodoType) => <Todo todo={todo} key={todo.id} />)
-        ) : (
-          <p>No todos to display. Please refresh the page.</p>
-        ))}
-    </main>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route
+          index
+          element={
+            <Home fetchError={fetchError} isLoading={isLoading} todos={todos} />
+          }
+        />
+        <Route path="details/:id" element={<TodoPage />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
   );
 }
 
