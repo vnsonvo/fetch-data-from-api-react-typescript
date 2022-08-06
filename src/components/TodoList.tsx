@@ -2,6 +2,12 @@ import { useEffect, useState } from "react";
 import { TodoType } from "../types/Todo.types";
 import Todo from "./Todo";
 import { Link } from "react-router-dom";
+import {
+  FcNumericalSorting12,
+  FcNumericalSorting21,
+  FcAlphabeticalSortingAz,
+  FcAlphabeticalSortingZa,
+} from "react-icons/fc";
 
 type Props = {
   todos: TodoType[];
@@ -26,24 +32,15 @@ const TodoList: React.FC<Props> = ({ todos, viewType }) => {
     }
   }, [viewType]);
 
-  // useEffect(() => {
-  //   const filteredResults = posts.filter((post) =>
-  //     ((post.body).toLowerCase()).includes(search.toLowerCase())
-  //     || ((post.title).toLowerCase()).includes(search.toLowerCase()));
-
-  //   setTodoNormal(filteredResults.reverse());
-  // }, [idSort, titleSort])
-
   const handleSortByID = () => {
-    console.log("a");
-    if (!idSort && idSort === false) {
+    if (!idSort) {
       setTodoNormal(todos);
     } else {
       const tempTodo: TodoType[] = [...todos].reverse();
       setTodoNormal(tempTodo);
     }
     if (idSort === undefined) {
-      setIDSort(false);
+      setIDSort(true);
     } else {
       setIDSort(!idSort);
     }
@@ -80,9 +77,27 @@ const TodoList: React.FC<Props> = ({ todos, viewType }) => {
         <table>
           <thead>
             <tr>
-              <th onClick={handleSortByID}>ID</th>
+              <th onClick={handleSortByID}>
+                ID{" "}
+                {idSort === undefined ? (
+                  ""
+                ) : idSort ? (
+                  <FcNumericalSorting12 />
+                ) : (
+                  <FcNumericalSorting21 />
+                )}
+              </th>
               <th>User ID</th>
-              <th onClick={() => handleSortByTitle()}>Title</th>
+              <th onClick={() => handleSortByTitle()}>
+                Title{" "}
+                {titleSort === undefined ? (
+                  ""
+                ) : titleSort ? (
+                  <FcAlphabeticalSortingAz />
+                ) : (
+                  <FcAlphabeticalSortingZa />
+                )}
+              </th>
               <th>Action</th>
             </tr>
           </thead>

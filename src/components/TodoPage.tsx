@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-// import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { TodoType } from "../types/Todo.types";
 
@@ -14,16 +12,6 @@ const TodoPage: React.FC<Props> = ({ todos }) => {
   };
   const { id } = useParams<Param>();
   const todo = todos[Number(id) - 1];
-
-  // fetch data from https://jsonplaceholder.typicode.com/todos/:id way
-  // const [todo, setTodo] = useState<TodoType>();
-  // useEffect(() => {
-  //   console.log("haha");
-  //   fetch(`https://jsonplaceholder.typicode.com/todos/${id}`)
-  //     .then((res) => res.json())
-  //     .then((data) => setTodo(data));
-  // }, []);
-
   return (
     <main>
       <h1>Details Page</h1>

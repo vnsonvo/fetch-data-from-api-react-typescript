@@ -12,7 +12,6 @@ function App() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log("test1");
     const fetchData = async (url: string) => {
       setIsLoading(true);
       try {
