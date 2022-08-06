@@ -1,6 +1,7 @@
 import "./TodoPage.css";
 import { Link, useParams } from "react-router-dom";
 import { TodoType } from "../types/Todo.types";
+// import { useEffect, useState } from "react";
 
 type Props = {
   todos: TodoType[];
@@ -13,6 +14,25 @@ const TodoPage: React.FC<Props> = ({ todos }) => {
   };
   const { id } = useParams<Param>();
   const todo = todos[Number(id) - 1];
+
+  // Alternative way: fetch
+  // const [todo, setTodo] = useState<TodoType>();
+  // useEffect(() => {
+  //   const fetchData = async (url: string) => {
+  //     try {
+  //       const res = await fetch(url);
+  //       if (res.ok) {
+  //         setTodo(await res.json());
+  //       }
+  //     } catch (err) {
+  //       if (err instanceof Error) console.error(err.message);
+  //       setTodo(undefined);
+  //     }
+  //   };
+
+  //   fetchData(`https://jsonplaceholder.typicode.com/todos/${id}`);
+  // }, [id]);
+
   return (
     <main className="details">
       <h1>Details Page</h1>
