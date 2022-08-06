@@ -10,6 +10,10 @@ type Props = {
 
 const TodoList: React.FC<Props> = ({ todos, viewType }) => {
   const [todoGroup, setTodoGroup] = useState<[TodoType[]]>([[]]);
+  const [todoNormal, setTodoNormal] = useState<TodoType[]>(todos);
+  const [idSort, setIDSort] = useState<boolean | undefined>(true);
+  const [titleSort, setTitleSort] = useState<boolean | undefined>();
+
   useEffect(() => {
     if (viewType) {
       const todoTemp: [TodoType[]] = [[]];
@@ -22,19 +26,67 @@ const TodoList: React.FC<Props> = ({ todos, viewType }) => {
     }
   }, [viewType]);
 
+  // useEffect(() => {
+  //   const filteredResults = posts.filter((post) =>
+  //     ((post.body).toLowerCase()).includes(search.toLowerCase())
+  //     || ((post.title).toLowerCase()).includes(search.toLowerCase()));
+
+  //   setTodoNormal(filteredResults.reverse());
+  // }, [idSort, titleSort])
+
+  const handleSortByID = () => {
+    console.log("a");
+    if (!idSort && idSort === false) {
+      setTodoNormal(todos);
+    } else {
+      const tempTodo: TodoType[] = [...todos].reverse();
+      setTodoNormal(tempTodo);
+    }
+    if (idSort === undefined) {
+      setIDSort(false);
+    } else {
+      setIDSort(!idSort);
+    }
+    setTitleSort(undefined);
+  };
+
+  const handleSortByTitle = () => {
+    if (!titleSort && titleSort === false) {
+      const tempTodo: TodoType[] = [...todos].sort((a, b) => {
+        if (a.title > b.title) return -1;
+        else if (a.title < b.title) return 1;
+        return 0;
+      });
+      setTodoNormal(tempTodo);
+    } else {
+      const tempTodo: TodoType[] = [...todos].sort((a, b) => {
+        if (a.title > b.title) return 1;
+        else if (a.title < b.title) return -1;
+        return 0;
+      });
+      setTodoNormal(tempTodo);
+    }
+    if (titleSort === undefined) {
+      setTitleSort(false);
+    } else {
+      setTitleSort(!titleSort);
+    }
+    setIDSort(undefined);
+  };
+
   return (
     <>
       {!viewType && (
         <table>
           <thead>
             <tr>
-              <th>ID</th>
+              <th onClick={handleSortByID}>ID</th>
               <th>User ID</th>
-              <th>Title</th>
+              <th onClick={() => handleSortByTitle()}>Title</th>
               <th>Action</th>
             </tr>
           </thead>
-          {todos.map((todo: TodoType) => (
+          {todoNormal.map((todo: TodoType) => (
             <Todo todo={todo} key={todo.id} />
           ))}
         </table>
