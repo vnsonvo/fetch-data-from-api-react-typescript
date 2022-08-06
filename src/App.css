@@ -1,24 +1,31 @@
 .app {
-  background: #152d3d;
-  padding: 30px;
+  min-height: 100vh;
+  background: rgb(230, 230, 230);
+  padding: 2rem 0 4rem 0;
+  display: flex;
+  justify-content: center;
 }
 
-.todos {
-  display: flex;
-  flex-direction: column;
-  background: #d18686;
-  border-radius: 4px;
-  padding: 5px;
+h1 {
+  margin-bottom: 2rem;
 }
 
-/* .todo {
-  align-items: center;
-  background: #fff;
-  border-radius: 3px;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
-  display: flex;
-  font-size: 12px;
-  justify-content: space-between;
-  margin-bottom: 6px;
-  padding: 3px 10px;
-} */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  height: 2.5rem;
+  background-color: rgb(212, 189, 148);
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  letter-spacing: 0.12rem;
+  line-height: 1;
+}

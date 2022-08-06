@@ -32,27 +32,29 @@ function App() {
   }, []);
 
   return (
-    <div className="app">
-      <Routes>
-        <Route path="/">
-          <Route
-            index
-            element={
-              <Home
-                fetchError={fetchError}
-                isLoading={isLoading}
-                todos={todos}
-              />
-            }
-          />
-          <Route path="details/:id" element={<TodoPage todos={todos} />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
-      <footer>
+    <>
+      <div className="app">
+        <Routes>
+          <Route path="/">
+            <Route
+              index
+              element={
+                <Home
+                  fetchError={fetchError}
+                  isLoading={isLoading}
+                  todos={todos}
+                />
+              }
+            />
+            <Route path="details/:id" element={<TodoPage todos={todos} />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      </div>
+      <footer className="footer">
         <p>&copy; Son Vo 2022</p>
       </footer>
-    </div>
+    </>
   );
 }
 

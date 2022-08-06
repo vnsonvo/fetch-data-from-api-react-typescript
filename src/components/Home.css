@@ -1,0 +1,15 @@
+.home {
+  margin-left: 2rem;
+}
+
+.home button {
+  padding: 10px 15px;
+  margin: 15px 10px 30px 0;
+  font-size: 20px;
+  border-radius: 10px;
+}
+
+.home button:hover,
+.home button:focus {
+  background-color: rgba(235, 217, 153, 0.5);
+}

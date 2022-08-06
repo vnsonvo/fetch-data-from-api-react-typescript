@@ -1,0 +1,11 @@
+.details a {
+  font-size: 1.2rem;
+  margin-left: 8px;
+}
+
+.details article {
+  border: 0 solid rgb(51, 99, 161);
+  border-width: 2px 0 2px 0;
+  margin: 20px 0;
+  padding: 20px 0;
+}

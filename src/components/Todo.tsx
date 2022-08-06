@@ -7,18 +7,16 @@ type Props = {
 
 const Todo: React.FC<Props> = ({ todo }) => {
   return (
-    <tbody>
-      <tr>
-        <td>{todo.id}</td>
-        <td>{todo.userId}</td>
-        <td>{todo.title}</td>
-        <td>
-          <Link to={`/details/${todo.id}`}>
-            <p>View Details</p>
-          </Link>
-        </td>
-      </tr>
-    </tbody>
+    <tr>
+      <td>{todo.id}</td>
+      <td>{todo.userId}</td>
+      <td>{todo.title}</td>
+      <td>
+        <Link to={`/details/${todo.id}`}>
+          <p>View Details</p>
+        </Link>
+      </td>
+    </tr>
   );
 };
 

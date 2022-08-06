@@ -1,3 +1,4 @@
+import "./TodoPage.css";
 import { Link, useParams } from "react-router-dom";
 import { TodoType } from "../types/Todo.types";
 
@@ -13,7 +14,7 @@ const TodoPage: React.FC<Props> = ({ todos }) => {
   const { id } = useParams<Param>();
   const todo = todos[Number(id) - 1];
   return (
-    <main>
+    <main className="details">
       <h1>Details Page</h1>
       <p>
         <Link to="/">Visit Homepage</Link>

@@ -1,7 +1,8 @@
+import "./TodoList.css";
 import { useEffect, useState } from "react";
 import { TodoType } from "../types/Todo.types";
 import Todo from "./Todo";
-import { Link } from "react-router-dom";
+import TodoGroup from "./TodoGroup";
 import {
   FcNumericalSorting12,
   FcNumericalSorting21,
@@ -30,7 +31,7 @@ const TodoList: React.FC<Props> = ({ todos, viewType }) => {
       });
       setTodoGroup(todoTemp);
     }
-  }, [viewType]);
+  }, [viewType, todos]);
 
   const handleSortByID = () => {
     if (!idSort) {
@@ -78,58 +79,51 @@ const TodoList: React.FC<Props> = ({ todos, viewType }) => {
           <thead>
             <tr>
               <th onClick={handleSortByID}>
-                ID{" "}
+                ID
                 {idSort === undefined ? (
                   ""
                 ) : idSort ? (
-                  <FcNumericalSorting12 />
+                  <FcNumericalSorting12 className="icon" />
                 ) : (
-                  <FcNumericalSorting21 />
+                  <FcNumericalSorting21 className="icon" />
                 )}
               </th>
               <th>User ID</th>
-              <th onClick={() => handleSortByTitle()}>
-                Title{" "}
+              <th onClick={() => handleSortByTitle()} className="title">
+                Title
                 {titleSort === undefined ? (
                   ""
                 ) : titleSort ? (
-                  <FcAlphabeticalSortingAz />
+                  <FcAlphabeticalSortingZa className="icon" />
                 ) : (
-                  <FcAlphabeticalSortingZa />
+                  <FcAlphabeticalSortingAz className="icon" />
                 )}
               </th>
               <th>Action</th>
             </tr>
           </thead>
-          {todoNormal.map((todo: TodoType) => (
-            <Todo todo={todo} key={todo.id} />
-          ))}
+          <tbody>
+            {todoNormal.map((todo: TodoType) => (
+              <Todo todo={todo} key={todo.id} />
+            ))}
+          </tbody>
         </table>
       )}
-      {viewType && todoGroup.length > 0 && (
+      {viewType && todoGroup.length && (
         <table>
           <thead>
             <tr>
               <th>User ID</th>
-              <th>Title</th>
+              <th className="titleGroup">Title</th>
             </tr>
           </thead>
           <tbody>
             {todoGroup.map((todoGroupByUserID: TodoType[], indexN: number) => (
-              <tr key={indexN}>
-                <td>{indexN + 1}</td>
-                <td>
-                  <ul>
-                    {todoGroupByUserID.map((eachTodo) => (
-                      <li key={eachTodo.id}>
-                        <Link to={`/details/${eachTodo.id}`}>
-                          {eachTodo.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </td>
-              </tr>
+              <TodoGroup
+                key={indexN}
+                index={indexN}
+                todoGroupByUserID={todoGroupByUserID}
+              />
             ))}
           </tbody>
         </table>

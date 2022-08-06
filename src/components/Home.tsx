@@ -1,3 +1,4 @@
+import "./Home.css";
 import { TodoType } from "../types/Todo.types";
 import TodoList from "./TodoList";
 import { useState } from "react";
@@ -20,9 +21,9 @@ const Home: React.FC<Props> = ({ isLoading, fetchError, todos }) => {
   };
 
   return (
-    <main>
+    <main className="home">
       <h1>Home Page</h1>
-      {isLoading && <p>Loading todos...</p>}
+      {isLoading && <h3>Loading todos...</h3>}
       {!isLoading && fetchError && <p style={{ color: "red" }}>{fetchError}</p>}
       {!isLoading &&
         !fetchError &&
@@ -35,7 +36,7 @@ const Home: React.FC<Props> = ({ isLoading, fetchError, todos }) => {
             <TodoList todos={todos} viewType={viewType} />
           </>
         ) : (
-          <p>No todos to display. Please refresh the page.</p>
+          <h3>No todos to display. Please refresh the page.</h3>
         ))}
     </main>
   );

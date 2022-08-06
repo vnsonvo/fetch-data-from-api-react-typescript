@@ -1,0 +1,60 @@
+table {
+  border: 1px solid rgb(212, 189, 148);
+  width: calc(100% - 2rem);
+  table-layout: fixed;
+}
+
+table tr {
+  background-color: #fff;
+}
+
+table th,
+table td {
+  padding: 0.8em;
+  text-align: center;
+}
+
+table th {
+  text-transform: uppercase;
+}
+
+ul li {
+  list-style-type: none;
+  text-align: left;
+}
+
+.title {
+  width: 60%;
+}
+
+.titleGroup {
+  width: 80%;
+}
+
+.icon {
+  font-size: 1.4rem;
+  vertical-align: middle;
+}
+
+@media screen and (max-width: 678px) {
+  table {
+    border: 0;
+  }
+
+  table thead {
+    border: none;
+  }
+
+  table tr {
+    border-bottom: 2px solid rgb(212, 189, 148);
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  table td {
+    border-bottom: 1px solid rgb(212, 189, 148);
+    display: block;
+    text-align: right;
+    font-size: 0.85em;
+  }
+}
